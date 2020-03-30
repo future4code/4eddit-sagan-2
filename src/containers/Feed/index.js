@@ -4,6 +4,7 @@ import {push} from "connected-react-router";
 import {routes} from "../../containers/Router/index";
 import { getPosts } from '../../actions/Actions'
 import Post from '../../components/Post/index'
+import NewPost from '../../containers/NewPost/index'
 
 
 class Feed extends Component {
@@ -18,10 +19,22 @@ class Feed extends Component {
     render() {
         return (
                 <div>
+                    <h1>Novo post</h1>
+                    {<NewPost />}
+                    <hr></hr>
+                    <hr></hr>
+                    <h1>Todos os posts</h1>
                     {
                 this.props.posts && this.props.posts.map((item) => (
                     <Post 
-                    teste={item.title}
+                    votesCount={item.votesCount}
+                    userVoteDirection={item.userVoteDirection}
+                    commentsNumber={item.commentsNumber}
+                    id={item.id}
+                    username={item.username}
+                    text={item.text}
+                    createdAt={item.createdAt}
+                    title={item.title}
                     />
                 ))
             }

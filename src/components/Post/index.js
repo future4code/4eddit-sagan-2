@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {WrapperPost} from './styled'
 
 class Post extends Component {
 
@@ -10,9 +11,16 @@ class Post extends Component {
     }
     render() {
         return (
-                <div>
-                    <p>{this.props.teste}</p>
-                </div>
+                <WrapperPost>
+                    <p>{this.props.votesCount}</p>
+                    <p>{this.props.userVoteDirection}</p>
+                    <p>{this.props.commentsNumber}</p>
+                    <p>{this.props.id}</p>
+                    <p>{this.props.username}</p>
+                    <p>{this.props.text}</p>
+                    <p>{this.props.createdAt}</p>
+                    <p>{this.props.title}</p>
+                </WrapperPost>
         );
     }
 }
