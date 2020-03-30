@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { push } from 'connected-react-router'
-import { login } from '../../actions/Actions'
+import { login } from '../../actions/Actions';
+import { push } from "connected-react-router";
+import {routes} from "../../containers/Router/index";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class LoginPage extends Component {
         <button type="submit">Login</button>
         <p> Ou </p>
         <hr/>
-        <button>Cadastre-se</button>
+        <button onClick={this.props.goToFeed}>Cadastre-se</button>
       </form>
       </div>
     );
@@ -59,7 +60,8 @@ class LoginPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) =>({
-  login: (email, password) => dispatch(login(email, password))
+  login: (email, password) => dispatch(login(email, password)), 
+  goToFeed: () => dispatch(push(routes.Feed))
   // aqui eu devo criar o dispatch push para enviar o usuário para a pagina de cadastro
 })
 
