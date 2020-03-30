@@ -10,7 +10,7 @@ export const login = (email, password) => async (dispatch) => {
     password
   }
   try {
-    const response = await axios.post(`${baseUrl}`, loginData);
+    const response = await axios.post(`${baseUrl}/login`, loginData);
     const token = response.data.token
     localStorage.setItem("token", token)
     // dispatch(push(routes.root))  vou deixar comentado porque quando o login der certo ele tem que ir para a pagina do edu
