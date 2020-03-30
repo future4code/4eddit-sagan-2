@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
 import {routes} from "../../containers/Router/index";
+import { getPosts } from '../../actions/Actions'
+import Post from '../../components/Post/index'
+
 
 class Feed extends Component {
 
@@ -10,20 +13,29 @@ class Feed extends Component {
         if (token === null) {
             this.props.goToLogin()
         }
+        this.props.getPosts()
     }
     render() {
         return (
                 <div>
-                    feed de posts
+                    {
+                this.props.posts && this.props.posts.map((item) => (
+                    <Post 
+                    teste={item.title}
+                    />
+                ))
+            }
                 </div>
         );
     }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({posts: state.posts.posts});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),
+    getPosts: () => dispatch(getPosts())
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
