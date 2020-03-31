@@ -2,13 +2,14 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router/index";
+import {newRegister} from "../../actions/Actions"
+
 
 const userRegister = [
   {
-    name:'nome', 
+    name:'username', 
     label:'Nome do novo Usuário',
     type:'text', 
-    required,
     pattern:'[a-zA-Z]{3,}', 
     title:'nome do usuário com no mínimo 3 letras'
   },
@@ -16,14 +17,12 @@ const userRegister = [
     name:'email', 
     label:'email do novo Usuário',
     type:'email', 
-    required, 
     title:'email completo do usuário'
   },
   {
-    name:'senha', 
+    name:'password', 
     label:'senha do novo Usuário',
     type:'password', 
-    required,
     pattern:'{5,}', 
     title:'nova senha com no mínimo 5 digitos'
   }
@@ -37,6 +36,7 @@ class Register extends Component{
     }
   }
 
+
   handleInputnewUser = event => {
     const {name, value} = event.target;
     this.setState({
@@ -47,8 +47,17 @@ class Register extends Component{
     })
   }
 
+  componentDidUpdate() {
+    const token = localStorage.getItem("token")
+    if(token !== null) {
+      this.props.goToFeed();
+    }
+  }
+
+
   handleOnSubmit = event => {
     event.preventDefault();
+    this.props.newRegister(this.state.form);
   }
 
   render() {
@@ -70,16 +79,19 @@ class Register extends Component{
               </div>
             )
           })}
-          <button>Cadastrar</button>
+          <button type="submit">Cadastrar</button>
         </form>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-    goToFeed: () => dispatch(push(routes.feed))
-  }
-}
-export default connect(null, mapDispatchToProps)(Register)
+const mapStateToProps = (state) => ({
+  user: state.posts.user
+})
+
+const mapDispatchToProps = (dispatch) =>({
+    goToFeed: () => dispatch(push(routes.root)),
+    newRegister: (form) => dispatch(newRegister(form))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

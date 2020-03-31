@@ -14,11 +14,16 @@ export const login = (email, password) => async (dispatch) => {
     console.log(response.data)
     localStorage.setItem("token", token)
     localStorage.setItem("user", user)
+    dispatch(setUser(response.data.user))
     // dispatch(push(routes.root))  vou deixar comentado porque quando o login der certo ele tem que ir para a pagina do edu
   } catch (error) {
     window.alert("Desculpe, o login de deu errado, tente novamente", error)
   }
 }
+
+const setUser = (userData) => ({type: 'SET_USER', payload: {
+  userData
+}})
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -54,3 +59,29 @@ export const newPost = (form) => async (dispatch) => {
     console.log(error)
   }
 }
+
+export const newRegister = (form) => async (dispatch) => {
+  console.log(form)
+  try {
+    const response = await axios.post(`${baseUrl}/signup`, form)
+    dispatch(newUser(response.data))
+    const token = response.data.token
+    const user = JSON.stringify(response.data.user)
+    localStorage.setItem("user", user)
+    localStorage.setItem("token", token)
+    dispatch(setUser(response.data.user))
+  }catch(error){
+    window.alert('Ops, não foi possível cadastrar, tente novamente!')
+    console.log(error)
+  }
+}
+export const newUser = (newUserData) => ({type: 'NEW_USER', payload: {
+  newUserData
+}})
+
+
+export const setLogout = () => (
+  localStorage.clear(),
+  {type: 'SET_LOGOUT', payload: {
+  
+}})
