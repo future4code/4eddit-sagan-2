@@ -25,6 +25,12 @@ class LoginPage extends Component {
     this.props.login(email, password)
   }
 
+  componentDidUpdate() {
+    const token = localStorage.getItem("token")
+    if(token !== null) {
+     this.props.goToFeed();
+    } 
+  }
 
 
   render() {
@@ -53,16 +59,21 @@ class LoginPage extends Component {
           <p> Ou </p>
           <hr />
         </form>
-        <button onClick={this.props.goToFeed}>Cadastre-se</button>
+        <button onClick={this.props.goToRegister}>Cadastre-se</button>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch(login(email, password)),
-  goToFeed: () => dispatch(push(routes.root))
-  // aqui eu devo criar o dispatch push para enviar o usuário para a pagina de cadastro
+const mapStateToProps = (state) => ({
+user: state.posts.user
 })
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+const mapDispatchToProps = (dispatch) => ({
+  login: (email, password) => dispatch(login(email, password)),
+  goToRegister: () => dispatch(push(routes.cadastro)),
+  goToFeed: () => dispatch(push(routes.root))
+  // aqui eu devo criar o dispatch push para enviar o usuário para as paginas necessárias 
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
