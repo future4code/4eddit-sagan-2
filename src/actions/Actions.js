@@ -104,3 +104,19 @@ export const getPostDetail = (id) => async (dispatch) => {
 const setPostDetail = (post) => ({type: 'SET_POST_DETAIL', payload: {
   post
 }})
+
+export const newComment = (id, form) => async (dispatch) => {
+  console.log(form)
+  console.log(id)
+  try {
+    const token = localStorage.getItem("token")
+    const response = await axios.post(`${baseUrl}/posts/${id}/comment`, form, {
+      headers: {
+          auth: token
+      }
+  }); console.log(response.data)
+  }catch(error){
+    window.alert('Ops, não foi possível comentar!')
+    console.log(error)
+  }
+}

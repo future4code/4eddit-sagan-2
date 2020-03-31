@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { WrapperDiv } from './styled'
+import { connect } from "react-redux";
+import { setLogout } from '../../actions/Actions'
 
 class Header extends Component {
 
@@ -14,11 +16,19 @@ class Header extends Component {
                 </div>
                 <div>
                     <p>info logado</p>
-                    <button onClick={this.setLogout}>Logout</button>
+                    <button onClick={this.props.setLogout}>Logout</button>
                 </div>
             </WrapperDiv>
         );
     }
 }
 
-export default Header;
+const mapStateToProps = () => ({
+
+})
+
+const mapDispatchToProps = (dispatch) =>({
+setLogout: () => dispatch(setLogout())
+}) 
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

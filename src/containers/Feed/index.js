@@ -57,7 +57,7 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments});
+const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments, user: state.posts.user});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),
