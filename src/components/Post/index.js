@@ -12,14 +12,14 @@ class Post extends Component {
     render() {
         return (
                 <WrapperPost onClick={() => {this.props.selectedId(this.props.id)}}>
-                    <p>{this.props.votesCount}</p>
-                    <p>{this.props.userVoteDirection}</p>
-                    <p>{this.props.commentsNumber}</p>
-                    <p>{this.props.id}</p>
-                    <p>{this.props.username}</p>
-                    <p>{this.props.text}</p>
-                    <p>{this.props.createdAt}</p>
-                    <p>{this.props.title}</p>
+                    <p>Número de votos: {this.props.votesCount}</p>
+                    <p>Voto computado: {this.props.userVoteDirection}</p>
+                    <p>Número de comentarios: {this.props.commentsNumber}</p>
+                    <p>ID: {this.props.id}</p>
+                    <p>Nome: {this.props.username}</p>
+                    <p>Texto do post: {this.props.text}</p>
+                    <p>Criado em: {this.props.createdAt}</p>
+                    <p>Titulo do post: {this.props.title}</p>
                 </WrapperPost>
         );
     }

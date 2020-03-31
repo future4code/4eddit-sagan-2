@@ -16,12 +16,18 @@ class Feed extends Component {
         }
         this.props.getPosts()
     }
+    componentDidUpdate() {
+        if (this.props.postComments !== null) {
+            this.props.goToPostDetail()
+        }
+        const token = localStorage.getItem('token')
+        if (token === null) {
+            this.props.goToLogin()
+        }
+    }
 
     handleWhitSelect = (event) => {
-        console.log(event)
         this.props.getPostDetail(event)
-        this.props.goToPostDetail()
-
     };
 
     render() {
@@ -51,7 +57,7 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => ({posts: state.posts.posts});
+const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),
