@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router/index";
 import { newComment } from "../../actions/Actions"
+import {TextFieldStyled} from './styled'
 
 
 const formData = [
@@ -35,15 +36,6 @@ class NewComment extends Component {
         });
     };
 
-
-    componentDidUpdate() {
-        const token = localStorage.getItem("token")
-        if (token !== null) {
-            this.props.goToFeed();
-        }
-    }
-
-
     handleOnSubmit = event => {
         event.preventDefault();
         this.props.newComment(this.props.id, this.state.form);
@@ -58,7 +50,7 @@ class NewComment extends Component {
                         return (
                             <div>
                                 <label>{field.label}</label>
-                                <input
+                                <TextFieldStyled
                                     name={field.name}
                                     type={field.type}
                                     value={this.state.form[field.name]}
