@@ -11,7 +11,7 @@ class Post extends Component {
     }
     render() {
         return (
-                <WrapperPost>
+                <WrapperPost onClick={() => {this.props.selectedId(this.props.id)}}>
                     <p>{this.props.votesCount}</p>
                     <p>{this.props.userVoteDirection}</p>
                     <p>{this.props.commentsNumber}</p>

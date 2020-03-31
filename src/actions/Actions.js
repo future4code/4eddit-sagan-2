@@ -54,3 +54,23 @@ export const newPost = (form) => async (dispatch) => {
     console.log(error)
   }
 }
+
+export const getPostDetail = (id) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${baseUrl}/posts/${id}`, {
+        headers: {
+            auth: token
+        }
+    })
+    console.log(response.data.post)
+    dispatch(setPostDetail(response.data.post))
+
+  } catch (error) {
+    alert('erro ao pegar detalhes. contate o suporte', error)
+    console.log(error)
+  }
+}
+const setPostDetail = (post) => ({type: 'SET_POST_DETAIL', payload: {
+  post
+}})
