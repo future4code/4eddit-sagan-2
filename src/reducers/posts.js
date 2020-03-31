@@ -1,5 +1,7 @@
 const initialState = {
-    posts: []
+    posts: [],
+    postDetail: null,
+    postComments: null
 }
 
 const posts = (state = initialState, action) => {
@@ -8,6 +10,12 @@ const posts = (state = initialState, action) => {
             return {
                 ...state,
                 posts: action.payload.posts.posts
+            }
+        case 'SET_POST_DETAIL':
+            return {
+                ...state,
+                postDetail: action.payload.post,
+                postComments: action.payload.post.comments
             }
         default:
             return state

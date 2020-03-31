@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
 import {routes} from "../../containers/Router/index";
-import { getPosts } from '../../actions/Actions'
+import { getPosts, getPostDetail } from '../../actions/Actions'
 import Post from '../../components/Post/index'
 import NewPost from '../../containers/NewPost/index'
 
@@ -16,13 +16,25 @@ class Feed extends Component {
         }
         this.props.getPosts()
     }
+    componentDidUpdate() {
+        if (this.props.postComments !== null) {
+            this.props.goToPostDetail()
+        }
+        const token = localStorage.getItem('token')
+        if (token === null) {
+            this.props.goToLogin()
+        }
+    }
+
+    handleWhitSelect = (event) => {
+        this.props.getPostDetail(event)
+    };
+
     render() {
         return (
                 <div>
                     <h1>Novo post</h1>
                     {<NewPost />}
-                    <hr></hr>
-                    <hr></hr>
                     <h1>Todos os posts</h1>
                     {
                 this.props.posts && this.props.posts.map((item) => (
@@ -36,6 +48,7 @@ class Feed extends Component {
                     text={item.text}
                     createdAt={item.createdAt}
                     title={item.title}
+                    selectedId={this.handleWhitSelect}
                     />
                 ))
             }
@@ -44,11 +57,13 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => ({posts: state.posts.posts});
+const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),
-    getPosts: () => dispatch(getPosts())
+    goToPostDetail: () => dispatch(push(routes.postdetails)),
+    getPosts: () => dispatch(getPosts()),
+    getPostDetail: (id) => dispatch(getPostDetail(id))
 
 });
 
