@@ -51,6 +51,7 @@ class NewComment extends Component {
                             <div>
                                 <label>{field.label}</label>
                                 <TextFieldStyled
+                                    key={this.props.id}
                                     name={field.name}
                                     type={field.type}
                                     value={this.state.form[field.name]}
