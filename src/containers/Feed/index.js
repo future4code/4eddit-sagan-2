@@ -27,6 +27,7 @@ class Feed extends Component {
                     {
                 this.props.posts && this.props.posts.map((item) => (
                     <Post 
+                    key={item.id}
                     votesCount={item.votesCount}
                     userVoteDirection={item.userVoteDirection}
                     commentsNumber={item.commentsNumber}
