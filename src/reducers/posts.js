@@ -26,6 +26,7 @@ const posts = (state = initialState, action) => {
             return{
                 ...state,
                 user: []
+            }
         case 'SET_POST_DETAIL':
             return {
                 ...state,
