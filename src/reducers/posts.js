@@ -2,7 +2,8 @@ const initialState = {
     posts: [],
     user: [],
     postDetail: null,
-    postComments: null
+    postComments: null,
+    topicVote: null
 }
 
 const posts = (state = initialState, action) => {
