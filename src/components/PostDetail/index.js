@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { WrapperDiv } from './styled'
 import Comments from '../Comments/index'
 import NewComment from "../NewComment/index"
 
