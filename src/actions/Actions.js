@@ -21,11 +21,9 @@ export const login = (email, password) => async (dispatch) => {
   }
 }
 
-const setUser = (userData) => ({
-  type: 'SET_USER', payload: {
-    userData
-  }
-})
+export const setUser = (userData) => ({type: 'SET_USER', payload: {
+  userData
+}})
 
 export const getPosts = () => async (dispatch) => {
   try {
