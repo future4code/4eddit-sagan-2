@@ -38,6 +38,7 @@ class PostDetail extends Component {
                             username={item.username}
                             text={item.text}
                             createdAt={item.createdAt}
+                            topicId={post.id}
                         />
                     ))}
                 </div>
@@ -46,7 +47,7 @@ class PostDetail extends Component {
     }
 }
 
-const mapStateToProps = state => ({ postDetail: state.posts.postDetail, postComments: state.posts.postComments });
+const mapStateToProps = state => ({ postDetail: state.posts.postDetail});
 
 const mapDispatchToProps = dispatch => ({});
 

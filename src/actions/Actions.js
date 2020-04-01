@@ -137,10 +137,24 @@ export const topicVote = (i, v) => async (dispatch) => {
         auth: token
       }
     })
+    dispatch(getPosts())
   } catch (error) {
     window.alert('não foi possivel votar')
     console.log(error)
   }
 }
 
-
+export const commentVote = (ti, v, ci) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token")
+    const response = await axios.put(`${baseUrl}/posts/${ti}/comment/${ci}/vote`, v, {
+      headers: {
+        auth: token
+      }
+    })
+    dispatch(getPostDetail(ti))
+  } catch (error) {
+    window.alert('não foi possivel votar')
+    console.log(error)
+  }
+}

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {WrapperPost} from './styled'
-import TopicVote from '../../components/Vote/topicVote'
+import TopicVote from '../TopicVote'
 
 class Post extends Component {
 
@@ -27,6 +27,7 @@ class Post extends Component {
                     key={this.props.id}
                     userVoteDirection={this.props.userVoteDirection}
                     topicId={this.props.id}
+                    votesCount={this.props.votesCount}
                     />
                 </WrapperPost>
         );
