@@ -65,7 +65,7 @@ class LoginPage extends Component {
           <TypographyLogin variant="h5" component="h3"> Ou </TypographyLogin>
           <hr />
         </form>
-        <ButtonLogin onClick={this.props.goToRegister} variant="contained" color='secondary'>Cadastre-se</ButtonLogin>
+        <ButtonLogin onClick={this.props.goToRegister} variant="contained" color='secondary'>Cadastro</ButtonLogin>
       </PaperLogin>
     );
   }

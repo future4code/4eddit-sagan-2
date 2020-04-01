@@ -3,26 +3,28 @@ import { connect } from "react-redux"
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router/index";
 import { newRegister } from "../../actions/Actions"
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import {TextFieldRegister} from './styled'
+import {ButtonRegister} from './styled'
+import {PaperRegister} from './styled'
+import {TypographyRegister} from './styled'
 
 const userRegister = [
   {
     name: 'username',
-    label: 'Nome do novo Usuário',
+    label: 'Digite seu nome',
     type: 'text',
     pattern: '[a-zA-Z]{3,}',
     title: 'nome do usuário com no mínimo 3 letras'
   },
   {
     name: 'email',
-    label: 'email do novo Usuário',
+    label: 'Digite seu email',
     type: 'email',
-    title: 'email completo do usuário'
+    title: 'Digite um email válido'
   },
   {
     name: 'password',
-    label: 'senha do novo Usuário',
+    label: 'Crie sua senha',
     type: 'password',
     pattern: '{5,}',
     title: 'nova senha com no mínimo 5 digitos'
@@ -63,14 +65,15 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <PaperRegister>
+        <TypographyRegister variant="h2" component="h3" color='primary'>Cadastre-se</TypographyRegister>
         <form onSubmit={this.handleOnSubmit}>
           {userRegister.map(field => {
             return (
               <div>
-                <label>{field.label}</label>
-                <TextField
+                <TextFieldRegister
                   variant="outlined"
+                  label={field.label}
                   name={field.name}
                   type={field.type}
                   value={this.state.form[field.name]}
@@ -81,9 +84,9 @@ class Register extends Component {
               </div>
             )
           })}
-          <Button type="submit" variant="contained">Cadastrar</Button>
+          <ButtonRegister type="submit" variant="contained" color="primary">Cadastrar</ButtonRegister>
         </form>
-      </div>
+      </PaperRegister>
     )
   }
 }
