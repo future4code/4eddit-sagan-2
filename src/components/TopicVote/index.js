@@ -1,18 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { push } from "connected-react-router";
-import { routes } from "../../containers/Router/index";
 import Button from '@material-ui/core/Button'
 import { topicVote } from "../../actions/Actions";
 
 
 class TopicVote extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
+  
   handlewithVote = (voteValue) => {
     let sendValue = ''
     if (this.props.userVoteDirection === voteValue) {
@@ -27,9 +20,8 @@ class TopicVote extends Component {
   render() {
     return (
       <div>
-        {this.props.topicId}
-        {this.props.userVoteDirection}
         <Button onClick={() => { this.handlewithVote(1) }}>+</Button>
+        <p>{this.props.votesCount}</p>
         <Button onClick={() => { this.handlewithVote(-1) }}>-</Button>
       </div>
     )
