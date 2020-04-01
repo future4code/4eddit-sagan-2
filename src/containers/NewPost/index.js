@@ -4,6 +4,7 @@ import {TextFieldStyled} from './styled'
 import {connect} from "react-redux";
 import {newPost} from "../../actions/Actions";
 
+
 class NewPost extends Component {
     constructor(props) {
         super(props);
