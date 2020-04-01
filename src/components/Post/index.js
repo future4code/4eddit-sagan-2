@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {WrapperPost} from './styled'
+import TopicVote from '../../components/Vote/topicVote'
 
 class Post extends Component {
 
@@ -11,7 +12,8 @@ class Post extends Component {
     }
     render() {
         return (
-                <WrapperPost onClick={() => {this.props.selectedId(this.props.id)}}>
+                <WrapperPost>
+                    <div onClick={() => {this.props.selectedId(this.props.id)}}>
                     <p>Número de votos: {this.props.votesCount}</p>
                     <p>Voto computado: {this.props.userVoteDirection}</p>
                     <p>Número de comentarios: {this.props.commentsNumber}</p>
@@ -20,6 +22,12 @@ class Post extends Component {
                     <p>Texto do post: {this.props.text}</p>
                     <p>Criado em: {this.props.createdAt}</p>
                     <p>Titulo do post: {this.props.title}</p>
+                    </div>
+                    <TopicVote
+                    key={this.props.id}
+                    userVoteDirection={this.props.userVoteDirection}
+                    topicId={this.props.id}
+                    />
                 </WrapperPost>
         );
     }

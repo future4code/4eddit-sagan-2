@@ -29,9 +29,9 @@ export const getPosts = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(`${baseUrl}/posts`, {
-        headers: {
-            auth: token
-        }
+      headers: {
+        auth: token
+      }
     })
     dispatch(setPosts(response.data))
 
@@ -41,17 +41,19 @@ export const getPosts = () => async (dispatch) => {
   }
 }
 
-const setPosts = (posts) => ({type: 'SET_POSTS', payload: {
-  posts
-}})
+const setPosts = (posts) => ({
+  type: 'SET_POSTS', payload: {
+    posts
+  }
+})
 
 export const newPost = (form) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.post(`${baseUrl}/posts`, form, {
-        headers: {
-            auth: token
-        }
+      headers: {
+        auth: token
+      }
     })
     dispatch(getPosts())
   } catch (error) {
@@ -70,28 +72,32 @@ export const newRegister = (form) => async (dispatch) => {
     localStorage.setItem("user", user)
     localStorage.setItem("token", token)
     dispatch(setUser(response.data.user))
-  }catch(error){
+  } catch (error) {
     window.alert('Ops, não foi possível cadastrar, tente novamente!')
     console.log(error)
   }
 }
-export const newUser = (newUserData) => ({type: 'NEW_USER', payload: {
-  newUserData
-}})
+export const newUser = (newUserData) => ({
+  type: 'NEW_USER', payload: {
+    newUserData
+  }
+})
 
 
 export const setLogout = () => (
   localStorage.clear(),
-  {type: 'SET_LOGOUT', payload: {
-  
-}})
+  {
+    type: 'SET_LOGOUT', payload: {
+
+    }
+  })
 export const getPostDetail = (id) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(`${baseUrl}/posts/${id}`, {
-        headers: {
-            auth: token
-        }
+      headers: {
+        auth: token
+      }
     })
     console.log(response.data.post)
     dispatch(setPostDetail(response.data.post))
@@ -101,9 +107,11 @@ export const getPostDetail = (id) => async (dispatch) => {
     console.log(error)
   }
 }
-const setPostDetail = (post) => ({type: 'SET_POST_DETAIL', payload: {
-  post
-}})
+const setPostDetail = (post) => ({
+  type: 'SET_POST_DETAIL', payload: {
+    post
+  }
+})
 
 export const newComment = (id, form) => async (dispatch) => {
   console.log(form)
@@ -112,11 +120,27 @@ export const newComment = (id, form) => async (dispatch) => {
     const token = localStorage.getItem("token")
     const response = await axios.post(`${baseUrl}/posts/${id}/comment`, form, {
       headers: {
-          auth: token
+        auth: token
       }
-  }); console.log(response.data)
-  }catch(error){
+    }); console.log(response.data)
+  } catch (error) {
     window.alert('Ops, não foi possível comentar!')
     console.log(error)
   }
 }
+
+export const topicVote = (i, v) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token")
+    const response = await axios.put(`${baseUrl}/posts/${i}/vote`, v, {
+      headers: {
+        auth: token
+      }
+    })
+  } catch (error) {
+    window.alert('não foi possivel votar')
+    console.log(error)
+  }
+}
+
+
