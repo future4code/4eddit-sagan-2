@@ -4,7 +4,8 @@ const initialState = {
     postDetail: null,
     postComments: null,
     topicVote: null,
-    loading: ''
+    loading: '',
+    searchTerms: ''
 }
 
 const posts = (state = initialState, action) => {
@@ -44,6 +45,11 @@ const posts = (state = initialState, action) => {
             return {
                 ...state,
                 loading: ''
+            }
+        case 'SET_SEARCH':
+            return {
+                ...state,
+                searchTerms: action.payload.terms
             }
         default:
             return state

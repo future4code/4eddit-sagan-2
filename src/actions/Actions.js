@@ -25,6 +25,10 @@ export const setUser = (userData) => ({type: 'SET_USER', payload: {
   userData
 }})
 
+export const setSearch = (terms) => ({type: 'SET_SEARCH', payload: {
+  terms
+}})
+
 export const getPosts = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
@@ -136,6 +140,8 @@ export const newComment = (id, form) => async (dispatch) => {
       }
     })
     dispatch(getPostDetail(id))
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
 
   } catch (error) {
     window.alert('Ops, não foi possível comentar!')
@@ -153,6 +159,8 @@ export const topicVote = (i, v) => async (dispatch) => {
     })
     dispatch(getPosts())
     dispatch(getPostDetail(i))
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
   } catch (error) {
     window.alert('não foi possivel votar')
     console.log(error)
@@ -168,8 +176,10 @@ export const commentVote = (ti, v, ci) => async (dispatch) => {
       }
     })
     dispatch(getPostDetail(ti))
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
   } catch (error) {
     window.alert('não foi possivel votar')
     console.log(error)
-  }
+  } 
 }

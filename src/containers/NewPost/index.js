@@ -6,17 +6,24 @@ import {newPost} from "../../actions/Actions";
 import {StyledPaper} from './styled'
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-
-
-
+import Loading from '../../components/Loading/index'
 
 class NewPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            form: {}
-        };
+            form: {},
+            loading: false
+        }
     }
+    componentWillReceiveProps() {
+        this.handleWhitLoading()
+    }
+    handleWhitLoading = () => {
+        if(this.props.loading === 'desliga') {
+            this.setState({loading: false})
+        }
+    };
 
     handleInputChange = event => {
         const {name, value} = event.target;
@@ -29,6 +36,7 @@ class NewPost extends Component {
     };
     
     handleSubmission = event => {
+        this.setState({loading: true})
         event.preventDefault();
         this.props.newPost(this.state.form)
     };
@@ -36,6 +44,9 @@ class NewPost extends Component {
     render() {
         return (
                 <StyledPaper>
+                    {<Loading 
+                    open={this.state.loading}
+                    />}
                     <FormControl fullWidth>
                     <form onSubmit={this.handleSubmission}>
                         {fieldsToForm.map(field => {
@@ -72,7 +83,7 @@ class NewPost extends Component {
 }
 
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({loading: state.posts.loading});
 
 const mapDispatchToProps = dispatch => ({
     newPost: (form) => dispatch(newPost(form)),

@@ -6,8 +6,24 @@ import Post from '../../components/Post/index'
 import {WrapperDiv} from './styled'
 import {push} from "connected-react-router";
 import {routes} from "../../containers/Router/index";
+import Loading from '../../components/Loading/index'
+
 
 class PostDetail extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: true
+        }
+    }
+    componentWillReceiveProps() {
+        this.handleWhitLoading()
+    }
+    handleWhitLoading = () => {
+        if(this.props.loading === 'desliga') {
+            this.setState({loading: false})
+        }
+    };
 
     textComment = () => {
         let text = 'comentarios'
@@ -35,6 +51,9 @@ class PostDetail extends Component {
 
         return (
             <WrapperDiv>
+                {<Loading 
+                    open={this.state.loading}
+                    />}
                 <Post 
                     key={post.id}
                     votesCount={post.votesCount}
@@ -67,7 +86,7 @@ class PostDetail extends Component {
     }
 }
 
-const mapStateToProps = state => ({ postDetail: state.posts.postDetail,  user: state.posts.user});
+const mapStateToProps = state => ({ postDetail: state.posts.postDetail,  user: state.posts.user, loading: state.posts.loading});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login))
