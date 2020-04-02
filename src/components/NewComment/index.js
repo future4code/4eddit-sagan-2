@@ -3,7 +3,10 @@ import { connect } from "react-redux"
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router/index";
 import { newComment } from "../../actions/Actions"
-import {TextFieldStyled} from './styled'
+import {TextFieldStyled, StyledPaper, WrapperDiv} from './styled'
+import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
+
 
 
 const formData = [
@@ -12,7 +15,7 @@ const formData = [
         label: 'Novo comentário',
         type: 'text',
         multiline: true,
-        rows: 10,
+        rows: 3,
         title: 'Escreva um novo comentário'
     }
 ]
@@ -39,34 +42,37 @@ class NewComment extends Component {
     handleOnSubmit = event => {
         event.preventDefault();
         this.props.newComment(this.props.id, this.state.form);
-
+        console.log("teste ")
     }
 
     render() {
         return (
-            <div>
+            <StyledPaper>
+                <FormControl fullWidth>
                 <form onSubmit={this.handleOnSubmit}>
                     {formData.map(field => {
                         return (
-                            <div>
-                                <label>{field.label}</label>
-                                <TextFieldStyled
+                                <TextFieldStyled variant="outlined"
                                     key={this.props.id}
+                                    label={field.label}
                                     name={field.name}
                                     type={field.type}
                                     value={this.state.form[field.name]}
                                     required={field.required}
                                     multiline={field.multiline}
                                     rows={field.rows}
+                                    fullWidth
                                     onChange={this.handleInputChange}
                                     title={field.title}
                                 />
-                            </div>
                         )
                     })}
-                    <button type="submit">Enviar</button>
-                </form>
-            </div>
+                    <Button type="submit" variant="contained" color="primary">
+                    Comentar
+                    </Button>
+                    </form>
+                </FormControl>
+            </StyledPaper>
         )
     }
 }

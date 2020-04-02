@@ -13,6 +13,6 @@ export const fieldsToForm = [
         required: true,
         title: "Texto descrevendo a postagem",
         multiline: true,
-        rows: 10
+        rows: 5
     }
 ];

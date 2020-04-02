@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
 
 
 export const WrapperDiv = styled.div`
@@ -15,6 +16,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 background-color: white;
+margin-bottom: 20px;
 
 `
 export const WrapperIcon = styled.div`
@@ -38,4 +40,8 @@ display: flex;
 flex-direction: row;
 align-items: center;
 margin: 5px;
+`
+export const StyledTextField = styled(TextField)`
+background-color: #f6f7f9;
+align-self: center;
 `
