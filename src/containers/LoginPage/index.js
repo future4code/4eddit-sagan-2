@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { login } from '../../actions/Actions';
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router/index";
+import {TextFieldLogin} from './styled'
+import {ButtonLogin} from './styled'
+import {PaperLogin} from './styled'
+import {TypographyLogin} from './styled' 
 
 class LoginPage extends Component {
   constructor(props) {
@@ -27,6 +31,7 @@ class LoginPage extends Component {
 
   componentDidUpdate() {
     const token = localStorage.getItem("token")
+
     if(token !== null) {
     this.props.goToFeed();
     } 
@@ -36,10 +41,11 @@ class LoginPage extends Component {
   render() {
     const { email, password } = this.state
     return (
-      <div>
-        <h1>Faça seu login </h1>
+      <PaperLogin elevation={2}>
+        <TypographyLogin variant="h2" component="h3" color='primary'>Faça seu login </TypographyLogin>
         <form onSubmit={this.handleLogin}>
-          <input
+          <TextFieldLogin
+            variant="outlined"
             name='email'
             type='email'
             label='Digite seu email'
@@ -47,7 +53,8 @@ class LoginPage extends Component {
             value={email}
             onChange={this.handleInput}
           />
-          <input
+          <TextFieldLogin
+            variant="outlined"
             name='password'
             type='password'
             label='Digite sua senha'
@@ -55,18 +62,18 @@ class LoginPage extends Component {
             value={password}
             onChange={this.handleInput}
           />
-          <button type="submit">Login</button>
-          <p> Ou </p>
+          <ButtonLogin type="submit" variant="contained" color='secondary'>Login</ButtonLogin>
+          <TypographyLogin variant="h5" component="h3"> Ou </TypographyLogin>
           <hr />
         </form>
-        <button onClick={this.props.goToRegister}>Cadastre-se</button>
-      </div>
+        <ButtonLogin onClick={this.props.goToRegister} variant="contained" color='secondary'>Cadastre-se</ButtonLogin>
+      </PaperLogin>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-user: state.posts.user
+  user: state.posts.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
