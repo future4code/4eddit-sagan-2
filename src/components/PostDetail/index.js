@@ -4,6 +4,8 @@ import Comments from '../Comments/index'
 import NewComment from "../NewComment/index"
 import Post from '../../components/Post/index'
 import {WrapperDiv} from './styled'
+import {push} from "connected-react-router";
+import {routes} from "../../containers/Router/index";
 
 class PostDetail extends Component {
 
@@ -18,6 +20,14 @@ class PostDetail extends Component {
     gna = () => {
         return (Math.floor(Math.random() * 9))
     }
+
+    componentDidUpdate() {
+        const token = localStorage.getItem('token')
+        if (token === null) {
+            this.props.goToLogin()
+        }
+    }
+
     render() {
         const post = {
             ...this.props.postDetail
@@ -57,8 +67,10 @@ class PostDetail extends Component {
     }
 }
 
-const mapStateToProps = state => ({ postDetail: state.posts.postDetail});
+const mapStateToProps = state => ({ postDetail: state.posts.postDetail,  user: state.posts.user});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    goToLogin: () => dispatch(push(routes.login))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
