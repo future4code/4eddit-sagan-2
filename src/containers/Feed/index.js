@@ -5,6 +5,7 @@ import {routes} from "../../containers/Router/index";
 import { getPosts, getPostDetail } from '../../actions/Actions'
 import Post from '../../components/Post/index'
 import NewPost from '../../containers/NewPost/index'
+import {WrapperDiv} from './styled'
 
 
 class Feed extends Component {
@@ -32,10 +33,8 @@ class Feed extends Component {
 
     render() {
         return (
-                <div>
-                    <h1>Novo post</h1>
+                <WrapperDiv>
                     {<NewPost />}
-                    <h1>Todos os posts</h1>
                     {
                 this.props.posts && this.props.posts.map((item) => (
                     <Post 
@@ -52,7 +51,7 @@ class Feed extends Component {
                     />
                 ))
             }
-                </div>
+                </WrapperDiv>
         );
     }
 }

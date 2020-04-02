@@ -2,10 +2,18 @@ import React, {Component} from "react";
 import {WrapperDiv} from './styled'
 import {connect} from "react-redux";
 import {setLogout, setUser} from '../../actions/Actions'
-import {StyledAppBar, WrapperDivLogo, WrapperIcon, WrapperUserData} from './styled'
+import {
+    StyledAppBar,
+    WrapperDivLogo,
+    WrapperIcon,
+    WrapperUserData,
+    StyledTextField
+} from './styled'
 import RedditIcon from '@material-ui/icons/Reddit';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 class Header extends Component {
@@ -52,10 +60,27 @@ class Header extends Component {
                 </WrapperDivLogo>
             </WrapperDiv>
         )
+        const searchdata = (
+            <WrapperDiv>
+                <StyledTextField placeholder="Search" variant="outlined"
+                    InputProps={
+                        {
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchIcon/>
+                                </InputAdornment>
+                            )
+                        }
+                    }/>
+            </WrapperDiv>
+        )
         return (
-            <StyledAppBar elevation={0}>
+            <StyledAppBar position={'relative'} elevation={0}>
                 {
                 this.props.user.length === 0 ? "" : logodata
+            }
+                {
+                this.props.user.length === 0 ? "" : searchdata
             }
                 {
                 this.props.user.length === 0 ? "" : userdata

@@ -122,7 +122,9 @@ export const newComment = (id, form) => async (dispatch) => {
       headers: {
         auth: token
       }
-    }); console.log(response.data)
+    })
+    dispatch(getPostDetail(id))
+
   } catch (error) {
     window.alert('Ops, não foi possível comentar!')
     console.log(error)
@@ -138,6 +140,7 @@ export const topicVote = (i, v) => async (dispatch) => {
       }
     })
     dispatch(getPosts())
+    dispatch(getPostDetail(i))
   } catch (error) {
     window.alert('não foi possivel votar')
     console.log(error)
