@@ -6,10 +6,18 @@ import { getPosts, getPostDetail } from '../../actions/Actions'
 import Post from '../../components/Post/index'
 import NewPost from '../../containers/NewPost/index'
 import {WrapperDiv} from './styled'
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Loading from '../../components/Loading/index'
 
 
 class Feed extends Component {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: true
+        }
+    }
     componentDidMount() {
         const token = localStorage.getItem('token')
         if (token === null) {
@@ -26,14 +34,28 @@ class Feed extends Component {
             this.props.goToLogin()
         }
     }
+    componentWillReceiveProps() {
+        this.handleWhitLoading()
+    }
 
     handleWhitSelect = (event) => {
+        this.setState({loading: true})
         this.props.getPostDetail(event)
+    };
+
+    handleWhitLoading = () => {
+        if(this.props.loading === 'desliga') {
+            this.setState({loading: false})
+        }
     };
 
     render() {
         return (
                 <WrapperDiv>
+                    {<Loading 
+                    open={this.state.loading}
+                    />}
+                    <button onClick={() => {this.setState({loading: true})}}>teste</button>
                     {<NewPost />}
                     {
                 this.props.posts && this.props.posts.map((item) => (
@@ -56,7 +78,7 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments, user: state.posts.user});
+const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments, user: state.posts.user, loading: state.posts.loading});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),

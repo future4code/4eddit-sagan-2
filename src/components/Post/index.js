@@ -2,9 +2,7 @@ import React, {Component} from "react";
 import {StyledPaper, WrapperBottom, WrapperTop, StyledCommentIcon, WrapperContent, StyledAvatar} from './styled'
 import TopicVote from '../TopicVote'
 import Typography from '@material-ui/core/Typography';
-import CommentIcon from '@material-ui/icons/Comment';
-import {Avatar} from '@material-ui/core';
-
+import Badge from '@material-ui/core/Badge';
 
 class Post extends Component {
 
@@ -57,7 +55,6 @@ class Post extends Component {
             text = `${minutos} minutos (${diafull}/${monthfull}/${yearfull}).`
         }
         return text
-
     }
 
     render() {
@@ -75,7 +72,7 @@ class Post extends Component {
                     <WrapperContent onClick={() => {this.props.selectedId(this.props.id)}}>
                         <WrapperTop>
                             <StyledAvatar src={`https://picsum.photos/1${this.gna()}${this.gna()}`} />
-        <Typography variant={'caption'} color={'secondary'}><strong>r/categoria</strong> Criado por: <strong>u/{this.props.username}</strong> a {textData}</Typography>
+                        <Typography variant={'caption'} color={'secondary'}><strong>r/categoria</strong> Criado por: <strong>u/{this.props.username}</strong> a {textData}</Typography>
                         </WrapperTop>
                         <div>
                             <Typography variant={'h6'} color={'textPrimary'}>{this.props.title}</Typography>
@@ -90,5 +87,4 @@ class Post extends Component {
         );
     }
 }
-
 export default Post;

@@ -3,7 +3,8 @@ const initialState = {
     user: [],
     postDetail: null,
     postComments: null,
-    topicVote: null
+    topicVote: null,
+    loading: ''
 }
 
 const posts = (state = initialState, action) => {
@@ -33,6 +34,16 @@ const posts = (state = initialState, action) => {
                 ...state,
                 postDetail: action.payload.post,
                 postComments: action.payload.post.comments
+            }
+        case 'SET_LOADING_OFF':
+            return {
+                ...state,
+                loading: 'desliga'
+            }
+        case 'SET_LOADING_FREE':
+            return {
+                ...state,
+                loading: ''
             }
         default:
             return state
