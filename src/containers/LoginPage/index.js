@@ -9,9 +9,9 @@ import { PaperLogin as WrapperDiv } from './styled'
 import { TypographyLogin } from './styled'
 import { WrapperIcon } from './styled'
 import RedditIcon from '@material-ui/icons/Reddit';
-import {WrapperInputs} from './styled'
+import { WrapperInputs } from './styled'
 import Divider from '@material-ui/core/Divider'
-
+import Loading from '../../components/Loading/index'
 
 
 class LoginPage extends Component {
@@ -19,9 +19,19 @@ class LoginPage extends Component {
     super(props)
     this.state = {
       email: 'thales.eduardo@gmail.com',
-      password: '12345'
+      password: '12345',
+      loading: false
     };
   }
+
+  componentWillReceiveProps() {
+    this.handleWhitLoading()
+  }
+  handleWhitLoading = () => {
+    if (this.props.loading === 'desliga') {
+      this.setState({ loading: false })
+    }
+  };
 
   handleInput = (event) => {
     this.setState({
@@ -30,6 +40,7 @@ class LoginPage extends Component {
   }
 
   handleLogin = (event) => {
+    this.setState({loading: true})
     event.preventDefault();
     const { email, password } = this.state;
     this.props.login(email, password)
@@ -48,6 +59,9 @@ class LoginPage extends Component {
     const { email, password } = this.state
     return (
       <WrapperDiv elevation={2} >
+        {<Loading
+          open={this.state.loading}
+        />}
         <WrapperIcon>
           <RedditIcon fontSize={'large'} />
         </WrapperIcon>
@@ -73,21 +87,22 @@ class LoginPage extends Component {
               onChange={this.handleInput}
             />
             <WrapperInputs>
-            <ButtonLogin type="submit" variant="contained" color='primary'>SIGN IN</ButtonLogin>
+              <ButtonLogin type="submit" variant="contained" color='primary'>SIGN IN</ButtonLogin>
             </WrapperInputs>
           </form>
-          <Divider/>
-          </WrapperInputs>
-          <TypographyLogin variant="h5" component="h3" color='primary'>New to 4eddit ?</TypographyLogin>
-          <ButtonLogin onClick={this.props.goToRegister} variant="contained" color='secondary'>SIGN UP</ButtonLogin>
-        
+          <Divider />
+        </WrapperInputs>
+        <TypographyLogin variant="h5" component="h3" color='primary'>New to 4eddit ?</TypographyLogin>
+        <ButtonLogin onClick={this.props.goToRegister} variant="contained" color='secondary'>SIGN UP</ButtonLogin>
+
       </WrapperDiv>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  user: state.posts.user
+  user: state.posts.user,
+  loading: state.posts.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({

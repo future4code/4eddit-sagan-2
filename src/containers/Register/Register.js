@@ -11,6 +11,7 @@ import { WrapperIcon } from './styled'
 import RedditIcon from '@material-ui/icons/Reddit';
 import { WrapperInputs } from './styled'
 import Divider from '@material-ui/core/Divider'
+import Loading from '../../components/Loading/index'
 
 
 const userRegister = [
@@ -40,10 +41,19 @@ class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      form: {}
+      form: {},
+      loading: false
     }
   }
 
+  componentWillReceiveProps() {
+    this.handleWhitLoading()
+  }
+  handleWhitLoading = () => {
+    if (this.props.loading === 'desliga') {
+      this.setState({ loading: false })
+    }
+  };
 
   handleInputnewUser = event => {
     const { name, value } = event.target;
@@ -64,6 +74,7 @@ class Register extends Component {
 
 
   handleOnSubmit = event => {
+    this.setState({loading: true})
     event.preventDefault();
     this.props.newRegister(this.state.form);
   }
@@ -71,6 +82,9 @@ class Register extends Component {
   render() {
     return (
       <WrapperDiv>
+        {<Loading
+          open={this.state.loading}
+        />}
         <WrapperIcon>
           <RedditIcon fontSize={'large'} />
         </WrapperIcon>
@@ -102,7 +116,8 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.posts.user
+  user: state.posts.user,
+  loading: state.posts.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
