@@ -3,10 +3,13 @@ import {StyledPaper, WrapperBottom, WrapperTop, StyledCommentIcon, WrapperConten
 import TopicVote from '../TopicVote'
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
+import {connect} from "react-redux";
+import {push} from "connected-react-router";
+import {routes} from "../../containers/Router/index";
 
 class Post extends Component {
 
-    componentDidMount() {
+    componentDidUpdate() {
         const token = localStorage.getItem('token')
         if (token === null) {
             this.props.goToLogin()
@@ -87,4 +90,9 @@ class Post extends Component {
         );
     }
 }
-export default Post;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+    goToLogin: () => dispatch(push(routes.login))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
