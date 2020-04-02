@@ -17,7 +17,10 @@ flex-direction: row;
 justify-content: space-between;
 background-color: white;
 margin-bottom: 20px;
-
+@media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 5px;
+}
 `
 export const WrapperIcon = styled.div`
 background-color: darkorange;
@@ -26,6 +29,9 @@ border-radius: 50%;
 width: auto;
 height: width;
 margin: 20px;
+@media (max-width: 768px) {
+    margin: 10px;
+}
 `
 export const WrapperDivLogo = styled.div`
 display: flex;
@@ -40,6 +46,10 @@ display: flex;
 flex-direction: row;
 align-items: center;
 margin: 5px;
+@media (max-width: 768px) {
+    visibility: hidden;
+    max-height: 0;
+}
 `
 export const StyledTextField = styled(TextField)`
 background-color: #f6f7f9;
