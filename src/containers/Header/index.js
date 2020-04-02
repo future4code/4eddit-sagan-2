@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import {push} from "connected-react-router";
+import {routes} from "../../containers/Router/index";
 
 
 class Header extends Component {
@@ -68,7 +70,7 @@ class Header extends Component {
             </WrapperUserData>
         )
         const logodata = (
-            <WrapperDiv>
+            <WrapperDiv onClick={this.props.goToFeed}>
                 <WrapperIcon>
                     <RedditIcon fontSize={'large'}/>
                 </WrapperIcon>
@@ -115,8 +117,8 @@ const mapStateToProps = state => ({user: state.posts.user});
 const mapDispatchToProps = (dispatch) => ({
     setLogout: () => dispatch(setLogout()),
     setUser: (data) => dispatch(setUser(data)),
-    setSearch: (terms) => dispatch(setSearch(terms))
-
+    setSearch: (terms) => dispatch(setSearch(terms)),
+    goToFeed: () => dispatch(push(routes.root))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
