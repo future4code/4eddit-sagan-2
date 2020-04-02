@@ -15,6 +15,8 @@ export const login = (email, password) => async (dispatch) => {
     localStorage.setItem("token", token)
     localStorage.setItem("user", user)
     dispatch(setUser(response.data.user))
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
     // dispatch(push(routes.root))  vou deixar comentado porque quando o login der certo ele tem que ir para a pagina do edu
   } catch (error) {
     window.alert("Desculpe, o login de deu errado, tente novamente", error)
@@ -77,6 +79,8 @@ export const newRegister = (form) => async (dispatch) => {
     localStorage.setItem("user", user)
     localStorage.setItem("token", token)
     dispatch(setUser(response.data.user))
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
   } catch (error) {
     window.alert('Ops, não foi possível cadastrar, tente novamente!')
     console.log(error)
