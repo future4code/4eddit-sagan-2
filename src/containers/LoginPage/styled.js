@@ -6,23 +6,68 @@ import Paper from '@material-ui/core/Paper';
 
 
 export const TextFieldLogin = styled(TextField)`
-
+width:30vw;
+margin: 20px;
+@media (max-width: 768px) {
+    display:flex;
+    flex-direction: column;
+    width: 80vw;
+    height:10vh;
+}
 `
 
 export const ButtonLogin = styled(Button)`
-
+@media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 30px;
+}
 `
 //esse paper é a div principal onde será posto o display
 export const PaperLogin = styled(Paper)`
 display: flex;
 flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 60vw;
-height: 60vh;
-margin-left: 20vw;
+align-items: flex-start;
+width: 40vw;
+height: 80vh;
+margin-left: 25vw;
+padding:30px;
+@media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 2px;
+    height: 95vh;
+    width: 95%;
+    margin-left: 10px;
+}
 `
 
 export const TypographyLogin = styled(Typography)`
 margin: o auto;
+`
+// aqui vou refazer o estilo do login
+
+export const WrapperIcon = styled.div`
+background-color: darkorange;
+padding: 10px;
+border-radius: 50%;
+width: auto;
+height: width;
+margin: 20px;
+`
+
+export const WrapperDiv = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+text-align: center;
+align-content: center;
+align-items: center;
+`
+
+export const WrapperInputs = styled.div`
+margin-bottom: 20px;
+@media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 2px;
+    margin-left: 1px;
+}
 `
