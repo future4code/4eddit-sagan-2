@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {WrapperDiv} from './styled'
 import {connect} from "react-redux";
-import {setLogout, setUser} from '../../actions/Actions'
+import {setLogout, setSearch, setUser} from '../../actions/Actions'
 import {
     StyledAppBar,
     WrapperDivLogo,
@@ -17,6 +17,14 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 class Header extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            form: {
+            searchTerms: ""
+            },
+        }
+    }
 
     componentDidMount() {
         const existUser = JSON.parse(localStorage.getItem('user'))
@@ -24,6 +32,18 @@ class Header extends Component {
             this.props.setUser(existUser)
         }
     }
+
+    handleInputChange = event => {
+        const {value} = event.target;
+        this.setState({
+            form: {
+                ...this.state.form,
+                searchTerms: value
+            }
+        })
+        this.props.setSearch(this.state.form.searchTerms)
+    };
+
     render() {
         const userdata = (
             <WrapperUserData>
@@ -62,7 +82,7 @@ class Header extends Component {
         )
         const searchdata = (
             <WrapperDiv>
-                <StyledTextField placeholder="Search" variant="outlined"
+                <StyledTextField placeholder="Search" variant="outlined" value={this.state.searchTerms} onChange={this.handleInputChange}
                     InputProps={
                         {
                             startAdornment: (
@@ -94,7 +114,8 @@ const mapStateToProps = state => ({user: state.posts.user});
 
 const mapDispatchToProps = (dispatch) => ({
     setLogout: () => dispatch(setLogout()),
-    setUser: (data) => dispatch(setUser(data))
+    setUser: (data) => dispatch(setUser(data)),
+    setSearch: (terms) => dispatch(setSearch(terms))
 
 })
 

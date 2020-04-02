@@ -6,6 +6,8 @@ import { newComment } from "../../actions/Actions"
 import {TextFieldStyled, StyledPaper, WrapperDiv} from './styled'
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import Loading from '../../components/Loading/index'
+
 
 
 
@@ -24,10 +26,18 @@ class NewComment extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            form: {}
+            form: {},
+            loading: false
         }
     }
-
+    componentWillReceiveProps() {
+        this.handleWhitLoading()
+    }
+    handleWhitLoading = () => {
+        if(this.props.loading === 'desliga') {
+            this.setState({loading: false})
+        }
+    };
 
     handleInputChange = event => {
         const {name, value} = event.target;
@@ -40,6 +50,7 @@ class NewComment extends Component {
     };
 
     handleOnSubmit = event => {
+        this.setState({loading: true})
         event.preventDefault();
         this.props.newComment(this.props.id, this.state.form);
         console.log("teste ")
@@ -48,6 +59,9 @@ class NewComment extends Component {
     render() {
         return (
             <StyledPaper>
+                {<Loading 
+                    open={this.state.loading}
+                    />}
                 <FormControl fullWidth>
                 <form onSubmit={this.handleOnSubmit}>
                     {formData.map(field => {
@@ -77,9 +91,7 @@ class NewComment extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    user: state.posts.user
-})
+const mapStateToProps = (state) => ({user: state.posts.user, loading: state.posts.loading})
 
 const mapDispatchToProps = (dispatch) => ({
     goToFeed: () => dispatch(push(routes.root)),
