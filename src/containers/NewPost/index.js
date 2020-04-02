@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 
 
 
+
 class NewPost extends Component {
     constructor(props) {
         super(props);
