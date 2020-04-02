@@ -8,7 +8,6 @@ import NewPost from '../../containers/NewPost/index'
 import {WrapperDiv} from './styled'
 import Loading from '../../components/Loading/index'
 
-
 class Feed extends Component {
     constructor(props) {
         super(props)
@@ -82,9 +81,7 @@ class Feed extends Component {
                     />
                 ))
         )
-
-
-
+        
             return (
                 <WrapperDiv>
                     {<Loading 

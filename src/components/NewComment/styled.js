@@ -7,6 +7,12 @@ margin: 10px;
 padding: 10px;
 display: inline-flex;
 min-width: 50%;
+@media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    min-width: 95%;
+}
 `
 
 export const TextFieldStyled = styled(TextField)`

@@ -10,6 +10,9 @@ padding: 10px;
 display: inline-flex;
 min-width: 50%;
 cursor: pointer;
+@media (min-width: 400px) {
+    width: 90%;
+  }
 `
 export const WrapperTop = styled.div`
 display: flex;
