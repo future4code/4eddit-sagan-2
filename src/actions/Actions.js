@@ -34,7 +34,8 @@ export const getPosts = () => async (dispatch) => {
       }
     })
     dispatch(setPosts(response.data))
-
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
   } catch (error) {
     alert('erro ao logar. contate o suporte', error)
     console.log(error)
@@ -83,6 +84,14 @@ export const newUser = (newUserData) => ({
   }
 })
 
+export const setLoadingOff = () => ({
+  type: 'SET_LOADING_OFF', payload: {
+  }
+})
+export const setLoadingFree = () => ({
+  type: 'SET_LOADING_FREE', payload: {
+  }
+})
 
 export const setLogout = () => (
   localStorage.clear(),
@@ -91,6 +100,7 @@ export const setLogout = () => (
 
     }
   })
+
 export const getPostDetail = (id) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
@@ -101,6 +111,8 @@ export const getPostDetail = (id) => async (dispatch) => {
     })
     console.log(response.data.post)
     dispatch(setPostDetail(response.data.post))
+    dispatch(setLoadingOff())
+    dispatch(setLoadingFree())
 
   } catch (error) {
     alert('erro ao pegar detalhes. contate o suporte', error)

@@ -8,8 +8,8 @@ class LoginPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      password: ''
+      email: 'thales.eduardo@gmail.com',
+      password: '12345'
     };
   }
 
@@ -28,7 +28,7 @@ class LoginPage extends Component {
   componentDidUpdate() {
     const token = localStorage.getItem("token")
     if(token !== null) {
-     this.props.goToFeed();
+    this.props.goToFeed();
     } 
   }
 
