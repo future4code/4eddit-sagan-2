@@ -23,8 +23,8 @@ class Header extends Component {
         super(props)
         this.state = {
             form: {
-            searchTerms: ""
-            },
+                searchTerms: ""
+            }
         }
     }
 
@@ -70,7 +70,9 @@ class Header extends Component {
             </WrapperUserData>
         )
         const logodata = (
-            <WrapperDiv onClick={this.props.goToFeed}>
+            <WrapperDiv onClick={
+                this.props.goToFeed
+            }>
                 <WrapperIcon>
                     <RedditIcon fontSize={'large'}/>
                 </WrapperIcon>
@@ -84,7 +86,13 @@ class Header extends Component {
         )
         const searchdata = (
             <WrapperDiv>
-                <StyledTextField placeholder="Search" variant="outlined" value={this.state.searchTerms} onChange={this.handleInputChange}
+                <StyledTextField placeholder="Search" variant="outlined"
+                    value={
+                        this.state.searchTerms
+                    }
+                    onChange={
+                        this.handleInputChange
+                    }
                     InputProps={
                         {
                             startAdornment: (
@@ -97,7 +105,8 @@ class Header extends Component {
             </WrapperDiv>
         )
         return (
-            <StyledAppBar position={'relative'} elevation={0}>
+            <StyledAppBar position={'relative'}
+                elevation={0}>
                 {
                 this.props.user.length === 0 ? "" : logodata
             }

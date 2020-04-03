@@ -7,27 +7,40 @@ import {calcHour} from '../../services/util'
 class Comments extends Component {
 
     render() {
-        const textData = (
-            calcHour(this.props.createdAt)
-        )
+        const textData = (calcHour(this.props.createdAt))
         return (
             <StyledPaper>
-                <CommentVote 
-                    commentId={this.props.id}
-                    votesCount={this.props.votesCount}
-                    userVoteDirection={this.props.userVoteDirection}
-                    topicId={this.props.topicId}
-                />
+                <CommentVote commentId={
+                        this.props.id
+                    }
+                    votesCount={
+                        this.props.votesCount
+                    }
+                    userVoteDirection={
+                        this.props.userVoteDirection
+                    }
+                    topicId={
+                        this.props.topicId
+                    }/>
                 <WrapperContent>
                     <WrapperTop>
-                        <Typography variant={'caption'} color={'secondary'}>Comentado por <strong> {this.props.username}</strong> a {textData} </Typography>
+                        <Typography variant={'caption'}
+                            color={'secondary'}>Comentado por
+                            <strong> {
+                                this.props.username
+                            }</strong>
+                            a {textData} </Typography>
                     </WrapperTop>
                     <div>
-                        <Typography variant={'subtitle2'} color={'textPrimary'}>{this.props.text}</Typography>
+                        <Typography variant={'subtitle2'}
+                            color={'textPrimary'}>
+                            {
+                            this.props.text
+                        }</Typography>
                     </div>
                 </WrapperContent>
             </StyledPaper>
-            );
+        );
     }
 }
 

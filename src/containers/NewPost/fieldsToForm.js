@@ -5,8 +5,7 @@ export const fieldsToForm = [
         type: "text",
         required: true,
         title: "Título do post"
-    },
-    {
+    }, {
         name: "text",
         label: "Texto da postagem",
         type: "text",

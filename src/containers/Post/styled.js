@@ -14,25 +14,25 @@ cursor: pointer;
     width: 90%;
   }
 `
-export const WrapperTop = styled.div`
+export const WrapperTop = styled.div `
 display: flex;
 flex-direction: row;
 margin-bottom: 10px;
 `
-export const WrapperBottom = styled.div`
+export const WrapperBottom = styled.div `
 display: flex;
 flex-direction: row;
 margin-top: 10px;
 `
-export const StyledAvatar= styled(Avatar)`
+export const StyledAvatar = styled(Avatar)`
 width: 20px;
 height: 20px;
 margin-right: 5px;
 `
-export const StyledCommentIcon= styled(CommentIcon)`
+export const StyledCommentIcon = styled(CommentIcon)`
 margin-right: 5px;
 font-size: 20px;
 `
-export const WrapperContent = styled.div`
+export const WrapperContent = styled.div `
 width: 100%;
 `

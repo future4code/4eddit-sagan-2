@@ -16,17 +16,17 @@ const posts = (state = initialState, action) => {
                 posts: action.payload.posts.posts
             }
         case 'SET_USER':
-            return{
+            return {
                 ...state,
                 user: action.payload.userData
             }
-            case 'NEW_USER':
-            return{
+        case 'NEW_USER':
+            return {
                 ...state,
                 newUser: action.payload.newUserData
             }
-            case 'SET_LOGOUT':
-            return{
+        case 'SET_LOGOUT':
+            return {
                 ...state,
                 user: []
             }

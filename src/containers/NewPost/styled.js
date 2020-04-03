@@ -24,7 +24,7 @@ align-items: center;
 text-align: center;
 align-self: center;
 `
-export const WrapperDiv = styled.div`
+export const WrapperDiv = styled.div `
 display: flex;
 justify-content: center
 `

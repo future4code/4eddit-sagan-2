@@ -18,7 +18,7 @@ class CommentVote extends Component {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
-        if(this.props.loading === 'desliga') {
+        if (this.props.loading === 'desliga') {
             this.setState({loading: false})
         }
     };
@@ -53,17 +53,37 @@ class CommentVote extends Component {
     }
 
     render() {
-    return (
-        <WrapperDiv>
-            {<Loading 
-            open={this.state.loading}
-            />}
-            <ForwardRoundedIcon onClick={() => {this.handlewithVote(1)}} style={this.upIcon()}/>
-            <Typography variant={'body1'}>{this.props.votesCount}</Typography>
-            <ForwardRoundedIcon onClick={() => {this.handlewithVote(-1)}} style={this.downIcon()}/>
-        </WrapperDiv>
-    )
-}
+        return (
+            <WrapperDiv> {
+                < Loading
+                open = {
+                    this.state.loading
+                }
+                />
+            }
+                <ForwardRoundedIcon onClick={
+                        () => {
+                            this.handlewithVote(1)
+                        }
+                    }
+                    style={
+                        this.upIcon()
+                    }/>
+                <Typography variant={'body1'}>
+                    {
+                    this.props.votesCount
+                }</Typography>
+                <ForwardRoundedIcon onClick={
+                        () => {
+                            this.handlewithVote(-1)
+                        }
+                    }
+                    style={
+                        this.downIcon()
+                    }/>
+            </WrapperDiv>
+        )
+    }
 }
 
 const mapStateToProps = state => ({loading: state.posts.loading});

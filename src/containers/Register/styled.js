@@ -21,7 +21,7 @@ padding:30px;
 }
 `
 
-export const WrapperDiv = styled.div`
+export const WrapperDiv = styled.div `
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -47,7 +47,7 @@ width: 10vw;
     margin-bottom: 30px;
 }
 `
-export const WrapperInputs = styled.div`
+export const WrapperInputs = styled.div `
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -65,7 +65,7 @@ align-items: center;
 export const TypographyLogin = styled(Typography)`
 margin: o auto;
 `
-export const WrapperIcon = styled.div`
+export const WrapperIcon = styled.div `
 background-color: darkorange;
 padding: 10px;
 border-radius: 50%;

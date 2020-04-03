@@ -18,7 +18,7 @@ class TopicVote extends Component {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
-        if(this.props.loading === 'desliga') {
+        if (this.props.loading === 'desliga') {
             this.setState({loading: false})
         }
     };
@@ -37,29 +37,49 @@ class TopicVote extends Component {
     }
 
     upIcon = () => {
-      let colorValue = 'gray'
-      if (this.props.userVoteDirection === 1) {
-        colorValue = 'green'
-      }
-      return {transform: 'rotate(270deg)', color: colorValue}
+        let colorValue = 'gray'
+        if (this.props.userVoteDirection === 1) {
+            colorValue = 'green'
+        }
+        return {transform: 'rotate(270deg)', color: colorValue}
     }
     downIcon = () => {
-      let colorValue = 'gray'
-      if (this.props.userVoteDirection === -1) {
-        colorValue = 'orange'
-      }
-      return {transform: 'rotate(90deg)', color: colorValue}
+        let colorValue = 'gray'
+        if (this.props.userVoteDirection === -1) {
+            colorValue = 'orange'
+        }
+        return {transform: 'rotate(90deg)', color: colorValue}
     }
 
     render() {
         return (
-            <WrapperDiv>
-                {<Loading 
-                open={this.state.loading}
-                />}
-                <ForwardRoundedIcon onClick={() => {this.handlewithVote(1)}} style={this.upIcon()}/>
-                <Typography variant={'body1'}>{this.props.votesCount}</Typography>
-                <ForwardRoundedIcon onClick={() => {this.handlewithVote(-1)}} style={this.downIcon()}/>
+            <WrapperDiv> {
+                < Loading
+                open = {
+                    this.state.loading
+                }
+                />
+            }
+                <ForwardRoundedIcon onClick={
+                        () => {
+                            this.handlewithVote(1)
+                        }
+                    }
+                    style={
+                        this.upIcon()
+                    }/>
+                <Typography variant={'body1'}>
+                    {
+                    this.props.votesCount
+                }</Typography>
+                <ForwardRoundedIcon onClick={
+                        () => {
+                            this.handlewithVote(-1)
+                        }
+                    }
+                    style={
+                        this.downIcon()
+                    }/>
             </WrapperDiv>
         )
     }

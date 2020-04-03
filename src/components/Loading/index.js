@@ -8,12 +8,17 @@ class Loading extends Component {
 
         return (
             <div>
-            <Backdrop style={{zIndex: 10}} open={this.props.open}>
-            <CircularProgress color="primary" />
-            </Backdrop> 
+                <Backdrop style={
+                        {zIndex: 10}
+                    }
+                    open={
+                        this.props.open
+                }>
+                    <CircularProgress color="primary"/>
+                </Backdrop>
             </div>
 
-            );
+        );
     }
 }
 

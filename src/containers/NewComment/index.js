@@ -1,26 +1,22 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { push } from "connected-react-router";
-import { routes } from "../Router/index";
-import { newComment } from "../../actions/Actions"
+import React, {Component} from "react"
+import {connect} from "react-redux"
+import {push} from "connected-react-router";
+import {routes} from "../Router/index";
+import {newComment} from "../../actions/Actions"
 import {TextFieldStyled, StyledPaper, WrapperDiv} from './styled'
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Loading from '../../components/Loading/index'
 
 
-
-
-const formData = [
-    {
+const formData = [{
         name: 'text',
         label: 'Novo comentário',
         type: 'text',
         multiline: true,
         rows: 3,
         title: 'Escreva um novo comentário'
-    }
-]
+    }]
 
 class NewComment extends Component {
     constructor(props) {
@@ -34,7 +30,7 @@ class NewComment extends Component {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
-        if(this.props.loading === 'desliga') {
+        if (this.props.loading === 'desliga') {
             this.setState({loading: false})
         }
     };
@@ -58,32 +54,58 @@ class NewComment extends Component {
 
     render() {
         return (
-            <StyledPaper>
-                {<Loading 
-                    open={this.state.loading}
-                    />}
+            <StyledPaper> {
+                < Loading
+                open = {
+                    this.state.loading
+                }
+                />
+            }
                 <FormControl fullWidth>
-                <form onSubmit={this.handleOnSubmit}>
-                    {formData.map(field => {
-                        return (
+                    <form onSubmit={
+                        this.handleOnSubmit
+                    }>
+                        {
+                        formData.map(field => {
+                            return (
                                 <TextFieldStyled variant="outlined"
-                                    key={this.props.id}
-                                    label={field.label}
-                                    name={field.name}
-                                    type={field.type}
-                                    value={this.state.form[field.name]}
-                                    required={field.required}
-                                    multiline={field.multiline}
-                                    rows={field.rows}
+                                    key={
+                                        this.props.id
+                                    }
+                                    label={
+                                        field.label
+                                    }
+                                    name={
+                                        field.name
+                                    }
+                                    type={
+                                        field.type
+                                    }
+                                    value={
+                                        this.state.form[field.name]
+                                    }
+                                    required={
+                                        field.required
+                                    }
+                                    multiline={
+                                        field.multiline
+                                    }
+                                    rows={
+                                        field.rows
+                                    }
                                     fullWidth
-                                    onChange={this.handleInputChange}
-                                    title={field.title}
-                                />
-                        )
-                    })}
-                    <Button type="submit" variant="contained" color="primary">
-                    Comentar
-                    </Button>
+                                    onChange={
+                                        this.handleInputChange
+                                    }
+                                    title={
+                                        field.title
+                                    }/>
+                            )
+                        })
+                    }
+                        <Button type="submit" variant="contained" color="primary">
+                            Comentar
+                        </Button>
                     </form>
                 </FormControl>
             </StyledPaper>

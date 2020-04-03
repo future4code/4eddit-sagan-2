@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
 
 
-export const WrapperDiv = styled.div`
+export const WrapperDiv = styled.div `
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -22,7 +22,7 @@ margin-bottom: 20px;
     margin-bottom: 5px;
 }
 `
-export const WrapperIcon = styled.div`
+export const WrapperIcon = styled.div `
 background-color: darkorange;
 padding: 10px;
 border-radius: 50%;
@@ -33,7 +33,7 @@ margin: 20px;
     margin: 10px;
 }
 `
-export const WrapperDivLogo = styled.div`
+export const WrapperDivLogo = styled.div `
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -42,7 +42,7 @@ align-content: center;
 align-items: center;
 cursor: pointer
 `
-export const WrapperUserData = styled.div`
+export const WrapperUserData = styled.div `
 display: flex;
 flex-direction: row;
 align-items: center;

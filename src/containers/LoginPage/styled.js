@@ -15,14 +15,12 @@ margin: 20px;
     height:10vh;
 }
 `
-
 export const ButtonLogin = styled(Button)`
 @media (max-width: 768px) {
     flex-direction: column;
     margin-bottom: 30px;
 }
 `
-//esse paper é a div principal onde será posto o display
 export const PaperLogin = styled(Paper)`
 display: flex;
 flex-direction: column;
@@ -43,9 +41,7 @@ padding:30px;
 export const TypographyLogin = styled(Typography)`
 margin: o auto;
 `
-// aqui vou refazer o estilo do login
-
-export const WrapperIcon = styled.div`
+export const WrapperIcon = styled.div `
 background-color: darkorange;
 padding: 10px;
 border-radius: 50%;
@@ -54,7 +50,7 @@ height: width;
 margin: 20px;
 `
 
-export const WrapperDiv = styled.div`
+export const WrapperDiv = styled.div `
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -63,7 +59,7 @@ align-content: center;
 align-items: center;
 `
 
-export const WrapperInputs = styled.div`
+export const WrapperInputs = styled.div `
 margin-bottom: 20px;
 @media (max-width: 768px) {
     flex-direction: column;

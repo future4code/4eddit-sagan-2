@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import Comments from '../../components/Comments/index'
 import NewComment from "../NewComment/index"
 import Post from '../Post/index'
@@ -20,7 +20,7 @@ class PostDetail extends Component {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
-        if(this.props.loading === 'desliga') {
+        if (this.props.loading === 'desliga') {
             this.setState({loading: false})
         }
     };
@@ -31,10 +31,10 @@ class PostDetail extends Component {
             text = 'comentario'
         }
         return text
-      }
-      
+    }
+
     gna = () => {
-        return (Math.floor(Math.random() * 9))
+        return(Math.floor(Math.random() * 9))
     }
 
     componentDidUpdate() {
@@ -50,43 +50,80 @@ class PostDetail extends Component {
         }
 
         return (
-            <WrapperDiv>
-                {<Loading 
-                    open={this.state.loading}
-                    />}
-                <Post 
-                    key={post.id}
-                    votesCount={post.votesCount}
-                    userVoteDirection={post.userVoteDirection}
-                    commentsNumber={post.commentsNumber}
-                    id={post.id}
-                    username={post.username}
-                    text={post.text}
-                    createdAt={post.createdAt}
-                    title={post.title}
-                    selectedId={() => {console.log(post.id)}}
+            <WrapperDiv> {
+                < Loading
+                open = {
+                    this.state.loading
+                }
                 />
-                    <NewComment
-                        id={post.id}
-                    />
-                    {this.props.postDetail && this.props.postDetail.comments.map((item) => (
-                        <Comments
-                            key={item.id}
-                            votesCount={item.votesCount}
-                            userVoteDirection={item.userVoteDirection}
-                            id={item.id}
-                            username={item.username}
-                            text={item.text}
-                            createdAt={item.createdAt}
-                            topicId={post.id}
-                        />
-                    ))}
-            </WrapperDiv>
+            }
+                <Post key={
+                        post.id
+                    }
+                    votesCount={
+                        post.votesCount
+                    }
+                    userVoteDirection={
+                        post.userVoteDirection
+                    }
+                    commentsNumber={
+                        post.commentsNumber
+                    }
+                    id={
+                        post.id
+                    }
+                    username={
+                        post.username
+                    }
+                    text={
+                        post.text
+                    }
+                    createdAt={
+                        post.createdAt
+                    }
+                    title={
+                        post.title
+                    }
+                    selectedId={
+                        () => {
+                            console.log(post.id)
+                        }
+                    }/>
+                <NewComment id={
+                    post.id
+                }/> {
+                this.props.postDetail && this.props.postDetail.comments.map((item) => (
+                    <Comments key={
+                            item.id
+                        }
+                        votesCount={
+                            item.votesCount
+                        }
+                        userVoteDirection={
+                            item.userVoteDirection
+                        }
+                        id={
+                            item.id
+                        }
+                        username={
+                            item.username
+                        }
+                        text={
+                            item.text
+                        }
+                        createdAt={
+                            item.createdAt
+                        }
+                        topicId={
+                            post.id
+                        }/>
+                ))
+            } </WrapperDiv>
         );
     }
 }
 
-const mapStateToProps = state => ({ postDetail: state.posts.postDetail,  user: state.posts.user, loading: state.posts.loading});
+const mapStateToProps = state => ({postDetail: state.posts.postDetail, user: state.posts.user, loading: state.posts.loading});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login))

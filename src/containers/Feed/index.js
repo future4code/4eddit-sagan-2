@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
 import {routes} from "../../containers/Router/index";
-import { getPosts, getPostDetail } from '../../actions/Actions'
+import {getPosts, getPostDetail} from '../../actions/Actions'
 import Post from '../Post/index'
 import NewPost from '../../containers/NewPost/index'
 import {WrapperDiv} from './styled'
@@ -19,7 +19,7 @@ class Feed extends Component {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
-        if(this.props.loading === 'desliga') {
+        if (this.props.loading === 'desliga') {
             this.setState({loading: false})
         }
     };
@@ -46,55 +46,98 @@ class Feed extends Component {
     };
     render() {
         let newdata = [...this.props.posts]
-        let searchResults = newdata.filter(post => 
-            post.title.toLowerCase().includes(this.props.searchTerms.toLowerCase()) || post.text.toLowerCase().includes(this.props.searchTerms.toLowerCase()))
+        let searchResults = newdata.filter(post => post.title.toLowerCase().includes(this.props.searchTerms.toLowerCase()) || post.text.toLowerCase().includes(this.props.searchTerms.toLowerCase()))
 
-        let postDataFull = (
-                this.props.posts && this.props.posts.map((item) => (
-                    <Post 
-                    key={item.id}
-                    votesCount={item.votesCount}
-                    userVoteDirection={item.userVoteDirection}
-                    commentsNumber={item.commentsNumber}
-                    id={item.id}
-                    username={item.username}
-                    text={item.text}
-                    createdAt={item.createdAt}
-                    title={item.title}
-                    selectedId={this.handleWhitSelect}
-                    />
-                ))
-        )
-        let postDataSearch = (
-                this.props.posts && searchResults.map((item) => (
-                    <Post 
-                    key={item.id}
-                    votesCount={item.votesCount}
-                    userVoteDirection={item.userVoteDirection}
-                    commentsNumber={item.commentsNumber}
-                    id={item.id}
-                    username={item.username}
-                    text={item.text}
-                    createdAt={item.createdAt}
-                    title={item.title}
-                    selectedId={this.handleWhitSelect}
-                    />
-                ))
-        )
-        
-            return (
-                <WrapperDiv>
-                    {<Loading 
-                    open={this.state.loading}
-                    />}
-                    {<NewPost />}
-                    {this.props.searchTerms.length > 0 ? postDataSearch : postDataFull}
-                </WrapperDiv>
+        let postDataFull = (this.props.posts && this.props.posts.map((item) => (
+            <Post key={
+                    item.id
+                }
+                votesCount={
+                    item.votesCount
+                }
+                userVoteDirection={
+                    item.userVoteDirection
+                }
+                commentsNumber={
+                    item.commentsNumber
+                }
+                id={
+                    item.id
+                }
+                username={
+                    item.username
+                }
+                text={
+                    item.text
+                }
+                createdAt={
+                    item.createdAt
+                }
+                title={
+                    item.title
+                }
+                selectedId={
+                    this.handleWhitSelect
+                }/>
+        )))
+        let postDataSearch = (this.props.posts && searchResults.map((item) => (
+            <Post key={
+                    item.id
+                }
+                votesCount={
+                    item.votesCount
+                }
+                userVoteDirection={
+                    item.userVoteDirection
+                }
+                commentsNumber={
+                    item.commentsNumber
+                }
+                id={
+                    item.id
+                }
+                username={
+                    item.username
+                }
+                text={
+                    item.text
+                }
+                createdAt={
+                    item.createdAt
+                }
+                title={
+                    item.title
+                }
+                selectedId={
+                    this.handleWhitSelect
+                }/>
+        )))
+
+        return (
+            <WrapperDiv> {
+                < Loading
+                open = {
+                    this.state.loading
+                }
+                />
+            }
+                {
+                < NewPost />
+            }
+                {
+                this.props.searchTerms.length > 0 ? postDataSearch : postDataFull
+            } </WrapperDiv>
         );
     }
 }
 
-const mapStateToProps = state => ({posts: state.posts.posts, postComments: state.posts.postComments, user: state.posts.user, loading: state.posts.loading, searchTerms: state.posts.searchTerms});
+const mapStateToProps = state => ({
+    posts: state.posts.posts,
+    postComments: state.posts.postComments,
+    user: state.posts.user,
+    loading: state.posts.loading,
+    searchTerms: state.posts.searchTerms
+});
 
 const mapDispatchToProps = dispatch => ({
     goToLogin: () => dispatch(push(routes.login)),

@@ -20,7 +20,7 @@ class NewPost extends Component {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
-        if(this.props.loading === 'desliga') {
+        if (this.props.loading === 'desliga') {
             this.setState({loading: false})
         }
     };
@@ -34,7 +34,7 @@ class NewPost extends Component {
             }
         });
     };
-    
+
     handleSubmission = event => {
         this.setState({loading: true})
         event.preventDefault();
@@ -43,41 +43,78 @@ class NewPost extends Component {
 
     render() {
         return (
-                <StyledPaper>
-                    {<Loading 
-                    open={this.state.loading}
-                    />}
-                    <FormControl fullWidth>
-                    <form onSubmit={this.handleSubmission}>
-                        {fieldsToForm.map(field => {
+            <StyledPaper> {
+                < Loading
+                open = {
+                    this.state.loading
+                }
+                />
+            }
+                <FormControl fullWidth>
+                    <form onSubmit={
+                        this.handleSubmission
+                    }>
+                        {
+                        fieldsToForm.map(field => {
                             return (
-                                    <TextFieldStyled variant="outlined"   
-                                        key={field.name}
-                                        id={field.name}
-                                        label={field.label}
-                                        name={field.name}
-                                        type={field.type}
-                                        onChange={this.handleInputChange}
-                                        pattern={field.pattern}
-                                        inputProps={{ pattern: field.pattern, min: field.min, title: field.title}}
-                                        min={field.min}
-                                        required={field.required}
-                                        title={field.title}
-                                        value={this.state.form[field.name]}
-                                        margin={'dense'}
-                                        fullWidth
-                                        multiline={field.multiline}
-                                        rows={field.rows}
-                                        />
+                                <TextFieldStyled variant="outlined"
+                                    key={
+                                        field.name
+                                    }
+                                    id={
+                                        field.name
+                                    }
+                                    label={
+                                        field.label
+                                    }
+                                    name={
+                                        field.name
+                                    }
+                                    type={
+                                        field.type
+                                    }
+                                    onChange={
+                                        this.handleInputChange
+                                    }
+                                    pattern={
+                                        field.pattern
+                                    }
+                                    inputProps={
+                                        {
+                                            pattern: field.pattern,
+                                            min: field.min,
+                                            title: field.title
+                                        }
+                                    }
+                                    min={
+                                        field.min
+                                    }
+                                    required={
+                                        field.required
+                                    }
+                                    title={
+                                        field.title
+                                    }
+                                    value={
+                                        this.state.form[field.name]
+                                    }
+                                    margin={'dense'}
+                                    fullWidth
+                                    multiline={
+                                        field.multiline
+                                    }
+                                    rows={
+                                        field.rows
+                                    }/>
                             );
                         })
                     }
-                    <Button type="submit" variant="contained" color="primary">
-                    Enviar
-                    </Button>
+                        <Button type="submit" variant="contained" color="primary">
+                            Enviar
+                        </Button>
                     </form>
-                    </FormControl>
-                </StyledPaper>
+                </FormControl>
+            </StyledPaper>
         );
     }
 }
@@ -86,7 +123,7 @@ class NewPost extends Component {
 const mapStateToProps = state => ({loading: state.posts.loading});
 
 const mapDispatchToProps = dispatch => ({
-    newPost: (form) => dispatch(newPost(form)),
+    newPost: (form) => dispatch(newPost(form))
 
 });
 
