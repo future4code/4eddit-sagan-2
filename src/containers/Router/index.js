@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage/index";
 import Feed from "../Feed/index";
 import Register from "../Register/Register";
-import PostDetail from '../../components/PostDetail/index'
+import PostDetail from '../PostDetail/index'
 
 export const routes = {
   root: "/",

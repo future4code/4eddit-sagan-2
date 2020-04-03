@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Comments from '../Comments/index'
+import Comments from '../../components/Comments/index'
 import NewComment from "../NewComment/index"
-import Post from '../../components/Post/index'
+import Post from '../Post/index'
 import {WrapperDiv} from './styled'
 import {push} from "connected-react-router";
-import {routes} from "../../containers/Router/index";
+import {routes} from "../Router/index";
 import Loading from '../../components/Loading/index'
 
 

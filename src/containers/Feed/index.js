@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {push} from "connected-react-router";
 import {routes} from "../../containers/Router/index";
 import { getPosts, getPostDetail } from '../../actions/Actions'
-import Post from '../../components/Post/index'
+import Post from '../Post/index'
 import NewPost from '../../containers/NewPost/index'
 import {WrapperDiv} from './styled'
 import Loading from '../../components/Loading/index'

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { push } from "connected-react-router";
-import { routes } from "../../containers/Router/index";
+import { routes } from "../Router/index";
 import { newComment } from "../../actions/Actions"
 import {TextFieldStyled, StyledPaper, WrapperDiv} from './styled'
 import FormControl from '@material-ui/core/FormControl';
