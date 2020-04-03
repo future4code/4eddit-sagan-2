@@ -24,21 +24,21 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const newRegister = (form) => async (dispatch) => {
-  console.log(form)
-  try {
-      const response = await axios.post(`${baseUrl}/signup`, form)
-      dispatch(newUser(response.data))
-      const token = response.data.token
-      const user = JSON.stringify(response.data.user)
-      localStorage.setItem("user", user)
-      localStorage.setItem("token", token)
-      dispatch(setUser(response.data.user))
-      dispatch(setLoadingOff())
-      dispatch(setLoadingFree())
-  } catch (error) {
-      window.alert('Ops, não foi possível cadastrar, tente novamente!')
-      console.log(error)
-  }
+    console.log(form)
+    try {
+        const response = await axios.post(`${baseUrl}/signup`, form)
+        dispatch(newUser(response.data))
+        const token = response.data.token
+        const user = JSON.stringify(response.data.user)
+        localStorage.setItem("user", user)
+        localStorage.setItem("token", token)
+        dispatch(setUser(response.data.user))
+        dispatch(setLoadingOff())
+        dispatch(setLoadingFree())
+    } catch (error) {
+        window.alert('Ops, não foi possível cadastrar, tente novamente!')
+        console.log(error)
+    }
 }
 
 export const getPosts = () => async (dispatch) => {
@@ -81,7 +81,6 @@ export const getPostDetail = (id) => async (dispatch) => {
                 auth: token
             }
         })
-        console.log(response.data.post)
         dispatch(setPostDetail(response.data.post))
         dispatch(setLoadingOff())
         dispatch(setLoadingFree())

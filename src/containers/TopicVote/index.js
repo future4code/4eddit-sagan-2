@@ -14,7 +14,7 @@ class TopicVote extends Component {
             loading: false
         }
     }
-    componentWillReceiveProps() {
+    UNSAFE_componentWillReceiveProps() {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {

@@ -16,7 +16,7 @@ class PostDetail extends Component {
             loading: true
         }
     }
-    componentWillReceiveProps() {
+    UNSAFE_componentWillReceiveProps() {
         this.handleWhitLoading()
     }
     handleWhitLoading = () => {
