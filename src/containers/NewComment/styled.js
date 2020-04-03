@@ -7,6 +7,7 @@ margin: 10px;
 padding: 10px;
 display: inline-flex;
 min-width: 50%;
+width: 50%;
 @media (max-width: 768px) {
     display: flex;
     justify-content: center;

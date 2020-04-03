@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import {push} from "connected-react-router";
 import {routes} from "../Router/index";
 import {newComment} from "../../actions/Actions"
-import {TextFieldStyled, StyledPaper, WrapperDiv} from './styled'
+import {TextFieldStyled, StyledPaper} from './styled'
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Loading from '../../components/Loading/index'
