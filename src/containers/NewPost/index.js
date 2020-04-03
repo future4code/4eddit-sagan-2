@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {fieldsToForm} from './fieldsToForm'
-import {TextFieldStyled, WrapperDiv} from './styled'
+import {TextFieldStyled} from './styled'
 import {connect} from "react-redux";
 import {newPost} from "../../actions/Actions";
 import {StyledPaper} from './styled'

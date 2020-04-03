@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
-import {routes} from "../../containers/Router/index";
+import {routes} from "../Router/index";
+import {calcHour, gna} from '../../services/util'
 
 class Post extends Component {
 
@@ -14,7 +15,7 @@ class Post extends Component {
         if (token === null) {
             this.props.goToLogin()
         }
-        this.calcHour()
+        calcHour(this.props.createdAt)
     }
 
     textComment = () => {
@@ -24,45 +25,10 @@ class Post extends Component {
         }
         return text
 }
-    
-    gna = () => {
-        return (Math.floor(Math.random() * 9))
-    }
-
-    calcHour = () => {
-        let text = ""
-        let fulltime = (new Date() - new Date(this.props.createdAt))/1000/60/60
-        let inteiro = Math.trunc(fulltime)
-        let minutos = Math.floor((fulltime-inteiro)*60)
-        let horas = 0
-        let dias = 0
-        let diasinteiro = inteiro/24
-        if (diasinteiro > 1) {
-            dias = Math.trunc(diasinteiro)
-            horas = Math.floor((diasinteiro-dias)*24)
-        }
-        if (diasinteiro < 1) {
-            horas = (diasinteiro)*24
-        }
-
-        let datautc = new Date(this.props.createdAt)
-        let diafull = datautc.getDate()
-        let monthfull = datautc.getMonth()+1
-        let yearfull = datautc.getFullYear()
-
-        if (dias > 0) {
-            text = `${dias} dias, ${horas} horas e ${minutos} minutos (${diafull}/${monthfull}/${yearfull}).`
-        } else if (dias <= 0 && horas > 0) {
-            text = `${horas} horas e ${minutos} minutos (${diafull}/${monthfull}/${yearfull}).`
-        } else if (dias <= 0 && horas <= 0) {
-            text = `${minutos} minutos (${diafull}/${monthfull}/${yearfull}).`
-        }
-        return text
-    }
 
     render() {
         const textData = (
-            this.calcHour()
+            calcHour(this.props.createdAt)
         )
         return (
                 <StyledPaper>
@@ -74,7 +40,7 @@ class Post extends Component {
                     />
                     <WrapperContent onClick={() => {this.props.selectedId(this.props.id)}}>
                         <WrapperTop>
-                            <StyledAvatar src={`https://picsum.photos/1${this.gna()}${this.gna()}`} />
+                            <StyledAvatar src={`https://picsum.photos/1${gna()}${gna()}`} />
                         <Typography variant={'caption'} color={'secondary'}><strong>r/categoria</strong> Criado por: <strong>u/{this.props.username}</strong> a {textData}</Typography>
                         </WrapperTop>
                         <div>
