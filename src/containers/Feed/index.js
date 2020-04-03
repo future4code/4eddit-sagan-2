@@ -32,9 +32,6 @@ class Feed extends Component {
         this.props.getPosts()
     }
     componentDidUpdate() {
-        if (this.props.postComments !== null) {
-            this.props.goToPostDetail()
-        }
         const token = localStorage.getItem('token')
         if (token === null) {
             this.props.goToLogin()
@@ -43,6 +40,8 @@ class Feed extends Component {
     handleWhitSelect = (event) => {
         this.setState({loading: true})
         this.props.getPostDetail(event)
+        this.props.goToPostDetail()
+
     };
     render() {
         let newdata = [...this.props.posts]

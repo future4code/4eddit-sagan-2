@@ -13,6 +13,13 @@ margin: 10px;
 padding: 10px;
 display: inline-flex;
 min-width: 50%;
+width: 50%;
+@media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    min-width: 95%;
+}
 `
 export const WrapperTop = styled.div `
 display: flex;
@@ -30,4 +37,8 @@ font-size: 15px;
 `
 export const WrapperContent = styled.div `
 width: 100%;
+`
+export const WrapperVote = styled.div `
+display: flex;
+justify-content: flex-start;
 `

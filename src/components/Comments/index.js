@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import CommentVote from '../../containers/CommentVote/index'
-import {StyledPaper, WrapperTop, WrapperContent} from './styled'
+import {StyledPaper, WrapperTop, WrapperContent, WrapperVote} from './styled'
 import Typography from '@material-ui/core/Typography';
 import {calcHour} from '../../services/util'
 
@@ -10,18 +10,20 @@ class Comments extends Component {
         const textData = (calcHour(this.props.createdAt))
         return (
             <StyledPaper>
-                <CommentVote commentId={
-                        this.props.id
-                    }
-                    votesCount={
-                        this.props.votesCount
-                    }
-                    userVoteDirection={
-                        this.props.userVoteDirection
-                    }
-                    topicId={
-                        this.props.topicId
-                    }/>
+                <WrapperVote>
+                    <CommentVote commentId={
+                            this.props.id
+                        }
+                        votesCount={
+                            this.props.votesCount
+                        }
+                        userVoteDirection={
+                            this.props.userVoteDirection
+                        }
+                        topicId={
+                            this.props.topicId
+                        }/>
+                </WrapperVote>
                 <WrapperContent>
                     <WrapperTop>
                         <Typography variant={'caption'}
