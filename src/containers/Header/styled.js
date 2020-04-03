@@ -40,7 +40,7 @@ justify-content: center;
 text-align: center;
 align-content: center;
 align-items: center;
-cursor: pointer
+cursor: pointer;
 `
 export const WrapperUserData = styled.div `
 display: flex;
